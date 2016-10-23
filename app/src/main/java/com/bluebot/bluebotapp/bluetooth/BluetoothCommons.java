@@ -27,6 +27,7 @@ public class BluetoothCommons {
             try
             {
                 socket.getOutputStream().write(action.getBytes());
+                Utils.showSnackBar("Action performed "+action,context);
             }
             catch (IOException e)
             {
@@ -35,16 +36,17 @@ public class BluetoothCommons {
         }
     }
 
-    public static void disconnectBot(BluetoothSocket socket){
+    public static void disconnectBot(BluetoothSocket socket,Context context){
         if (socket!=null) //If the btSocket is busy
         {
             try
             {
                 socket.close(); //close connection
+                Utils.showSnackBar("disconnected",context);
             }
             catch (IOException e)
             {
-                e.printStackTrace();
+                Utils.showSnackBar("something went wrong", context);
             }
         }
     }
