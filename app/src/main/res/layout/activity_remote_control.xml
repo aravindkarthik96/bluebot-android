@@ -9,4 +9,70 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.bluebot.bluebotapp.RemoteControl">
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="up"
+        android:id="@+id/up"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Revolve"
+        android:id="@+id/rLeft"
+        android:layout_alignTop="@+id/up"
+        android:layout_toStartOf="@+id/up" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Revolve"
+        android:id="@+id/rRight"
+        android:layout_alignBottom="@+id/up"
+        android:layout_toEndOf="@+id/up" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="left"
+        android:id="@+id/left"
+        android:layout_below="@+id/rLeft"
+        android:layout_alignStart="@+id/rLeft" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="down"
+        android:id="@+id/down"
+        android:layout_below="@+id/rRight"
+        android:layout_toStartOf="@+id/rRight" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="right"
+        android:id="@+id/right"
+        android:layout_below="@+id/rRight"
+        android:layout_alignStart="@+id/rRight" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Stop"
+        android:id="@+id/stop"
+        android:layout_below="@+id/left"
+        android:layout_alignStart="@+id/left"
+        android:layout_alignEnd="@+id/right" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="disconnect"
+        android:id="@+id/disconnect"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true" />
+
 </RelativeLayout>

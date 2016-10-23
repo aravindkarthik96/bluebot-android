@@ -35,6 +35,9 @@ public class BluetoothCommons {
                 Utils.showSnackBar("something went wrong",context);
             }
         }
+        else {
+            Utils.showSnackBar("sorry bluetooth is not connected",context);
+        }
     }
 
     public static void disconnectBot(BluetoothSocket socket,Context context){
