@@ -16,33 +16,37 @@ import android.widget.Toast;
 import com.bluebot.bluebotapp.Utils;
 import com.bluebot.bluebotapp.bluetooth.BluetoothCommons;
 import com.bluebot.bluebotapp.R;
+import com.bluebot.bluebotapp.bluetooth.BluetoothConnectionCallback;
+import com.bluebot.bluebotapp.bluetooth.BluetoothConnectionTask;
 import com.bluebot.bluebotapp.pickBluetooth.PickBluetoothActivity;
 
 import java.io.IOException;
 import java.util.UUID;
 
-public class HomeActivity extends AppCompatActivity implements HomeActivityView {
+public class HomeActivity extends AppCompatActivity implements HomeActivityView , BluetoothConnectionCallback {
 
     String address = null;
     private ProgressDialog progress;
     HomeActivityPresenter presenter;
-    BluetoothAdapter bluetoothAdapter = null;
-    BluetoothSocket bluetoothSocket = null;
-    private boolean isBtConnected = false;
-    static final UUID myUUID = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB");
     Button disconnectButton;
+    BluetoothSocket bluetoothSocket;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         presenter = new HomeActivityPresenter(this);
-        disconnectButton = (Button) findViewById(R.id.disconnectButton);
+        initView();
         Intent pickBluetoothIntent = getIntent();
         address = pickBluetoothIntent.getStringExtra(PickBluetoothActivity.EXTRA_ADDRESS);
+        BluetoothConnectionTask bluetoothConnectionTask = new BluetoothConnectionTask(this,address);
+        bluetoothConnectionTask.execute();
+
+    }
+
+    private void initView(){
         progress = ProgressDialog.show(HomeActivity.this, "Connecting to bluebot", "hold on");
-        ConnectBluetooth connectBluetooth=new ConnectBluetooth();
-        connectBluetooth.execute();
+        disconnectButton = (Button) findViewById(R.id.disconnectButton);
         disconnectButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -72,52 +76,20 @@ public class HomeActivity extends AppCompatActivity implements HomeActivityView 
         progress.dismiss();
     }
 
-    private class ConnectBluetooth extends AsyncTask<Void, Void, Void>  // UI thread
-    {
-        private boolean ConnectSuccess = true; //if it's here, it's almost connected
+    @Override
+    public void onBluetoothConnectionFailed() {
+        hideProgress();
+        Utils.showSnackBar("something went wrong",getApplicationContext());
+    }
 
-        @Override
-        protected void onPreExecute()
-        {
-            showProgress();  //show a progress dialog
-        }
+    @Override
+    public void onBluetoothConnectionSuccess(BluetoothSocket bluetoothSocket) {
+        hideProgress();
+        Utils.showSnackBar("connection established",getApplicationContext());
+    }
 
-        @Override
-        protected Void doInBackground(Void... devices) //while the progress dialog is shown, the connection is done in background
-        {
-            try
-            {
-                if (bluetoothSocket == null || !isBtConnected)
-                {
-                    bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();//get the mobile bluetooth device
-                    BluetoothDevice device = bluetoothAdapter.getRemoteDevice(address);//connects to the device's address and checks if it's available
-                    bluetoothSocket = device.createInsecureRfcommSocketToServiceRecord(myUUID);//create a RFCOMM (SPP) connection
-                    BluetoothAdapter.getDefaultAdapter().cancelDiscovery();
-                    bluetoothSocket.connect();//start connection
-                }
-            }
-            catch (IOException e)
-            {
-                ConnectSuccess = false;//if the try failed, you can check the exception here
-            }
-            return null;
-        }
-        @Override
-        protected void onPostExecute(Void result) //after the doInBackground, it checks if everything went fine
-        {
-            super.onPostExecute(result);
-
-            if (!ConnectSuccess)
-            {
-                Utils.showSnackBar("Connection Failed. Is it a SPP Bluetooth? Try again.",getApplicationContext());
-                finish();
-            }
-            else
-            {
-                Utils.showSnackBar("Connected",getApplicationContext());
-                isBtConnected = true;
-            }
-            hideProgress();
-        }
+    @Override
+    public void onPreExecute() {
+        progress.show();
     }
 }

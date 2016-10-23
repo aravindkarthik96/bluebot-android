@@ -19,6 +19,7 @@ public class BluetoothCommons {
     public static final String ACTION_RLEFT="q";
     public static final String ACTION_BACK="s";
     public static final String ACTION_STAND="x";
+    public static final String EXTRA_ADDRESS = "EXTRA_ADDRESS";
 
 
     public static void moveBot(String action, BluetoothSocket socket ,Context context) {

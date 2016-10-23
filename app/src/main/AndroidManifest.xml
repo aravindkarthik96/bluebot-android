@@ -23,7 +23,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".homePage.HomeActivity" />
-        <activity android:name=".pickBluetooth.PickBluetoothActivity"/>
+        <activity android:name=".pickBluetooth.PickBluetoothActivity" />
+        <activity android:name=".RemoteControl" />
+
     </application>
 
 </manifest>
