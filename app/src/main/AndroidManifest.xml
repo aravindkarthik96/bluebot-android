@@ -23,7 +23,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".homePage.HomeActivity" />
-        <activity android:name=".pickBluetooth.PickBluetoothActivity"></activity>
+        <activity android:name=".pickBluetooth.PickBluetoothActivity"/>
     </application>
 
 </manifest>

@@ -47,6 +47,7 @@ public class HomeActivity extends AppCompatActivity implements HomeActivityView 
             @Override
             public void onClick(View view) {
                 BluetoothCommons.disconnectBot(bluetoothSocket , getApplicationContext());
+                finish();
             }
         });
     }
