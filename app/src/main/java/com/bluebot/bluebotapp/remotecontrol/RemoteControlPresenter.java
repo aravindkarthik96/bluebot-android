@@ -1,9 +1,10 @@
-package com.bluebot.bluebotapp;
+package com.bluebot.bluebotapp.remotecontrol;
 
 import android.view.View;
 import android.widget.Button;
 
-import com.bluebot.bluebotapp.bluetooth.BluetoothCommons;
+import com.bluebot.bluebotapp.R;
+import com.bluebot.bluebotapp.commons.BluetoothCommons;
 
 /**
  * Created by aravind karthik on 10/24/2016.

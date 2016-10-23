@@ -10,12 +10,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
-import com.bluebot.bluebotapp.RemoteControl;
-import com.bluebot.bluebotapp.Utils;
-import com.bluebot.bluebotapp.bluetooth.BluetoothCommons;
+import com.bluebot.bluebotapp.remotecontrol.RemoteControl;
+import com.bluebot.bluebotapp.commons.Utils;
+import com.bluebot.bluebotapp.commons.BluetoothCommons;
 import com.bluebot.bluebotapp.R;
 import com.bluebot.bluebotapp.bluetooth.BluetoothConnectionCallback;
-import com.bluebot.bluebotapp.bluetooth.BluetoothConnectionTask;
 
 public class HomeActivity extends AppCompatActivity implements HomeActivityView , BluetoothConnectionCallback {
 

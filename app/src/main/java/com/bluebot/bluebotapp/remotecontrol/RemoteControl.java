@@ -1,4 +1,4 @@
-package com.bluebot.bluebotapp;
+package com.bluebot.bluebotapp.remotecontrol;
 
 import android.app.ProgressDialog;
 import android.bluetooth.BluetoothSocket;
@@ -6,12 +6,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Switch;
 
-import com.bluebot.bluebotapp.bluetooth.BluetoothCommons;
+import com.bluebot.bluebotapp.R;
+import com.bluebot.bluebotapp.commons.Utils;
+import com.bluebot.bluebotapp.commons.BluetoothCommons;
 import com.bluebot.bluebotapp.bluetooth.BluetoothConnectionCallback;
 import com.bluebot.bluebotapp.bluetooth.BluetoothConnectionTask;
-import com.bluebot.bluebotapp.homePage.HomeActivity;
 
 public class RemoteControl extends AppCompatActivity implements BluetoothConnectionCallback , RemoteControlView , View.OnClickListener{
 

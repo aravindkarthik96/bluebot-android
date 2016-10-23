@@ -1,4 +1,4 @@
-package com.bluebot.bluebotapp;
+package com.bluebot.bluebotapp.commons;
 
 import android.content.Context;
 import android.widget.Toast;

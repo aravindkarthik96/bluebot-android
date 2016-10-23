@@ -1,9 +1,9 @@
-package com.bluebot.bluebotapp.bluetooth;
+package com.bluebot.bluebotapp.commons;
 
 import android.bluetooth.BluetoothSocket;
 import android.content.Context;
 
-import com.bluebot.bluebotapp.Utils;
+import com.bluebot.bluebotapp.commons.Utils;
 
 import java.io.IOException;
 

@@ -1,10 +1,11 @@
-package com.bluebot.bluebotapp;
+package com.bluebot.bluebotapp.commons;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 
+import com.bluebot.bluebotapp.R;
 import com.bluebot.bluebotapp.pickBluetooth.PickBluetoothActivity;
 
 public class SplashScreen extends Activity {
