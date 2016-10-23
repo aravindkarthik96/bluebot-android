@@ -4,6 +4,7 @@ import android.app.ProgressDialog;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothSocket;
+import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
@@ -12,6 +13,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.bluebot.bluebotapp.Utils;
 import com.bluebot.bluebotapp.bluetooth.BluetoothCommons;
 import com.bluebot.bluebotapp.R;
 import com.bluebot.bluebotapp.pickBluetooth.PickBluetoothActivity;
@@ -44,7 +46,7 @@ public class HomeActivity extends AppCompatActivity implements HomeActivityView 
         disconnectButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                BluetoothCommons.disconnectBot(bluetoothSocket);
+                BluetoothCommons.disconnectBot(bluetoothSocket , getApplicationContext());
             }
         });
     }
@@ -57,6 +59,11 @@ public class HomeActivity extends AppCompatActivity implements HomeActivityView 
     @Override
     public void makeToast(String message) {
         Toast.makeText(getApplicationContext(),message, Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public Context getContextFromActivity() {
+        return getApplicationContext();
     }
 
     @Override
@@ -101,12 +108,12 @@ public class HomeActivity extends AppCompatActivity implements HomeActivityView 
 
             if (!ConnectSuccess)
             {
-                makeToast("Connection Failed. Is it a SPP Bluetooth? Try again.");
+                Utils.showSnackBar("Connection Failed. Is it a SPP Bluetooth? Try again.",getApplicationContext());
                 finish();
             }
             else
             {
-                makeToast("Connected");
+                Utils.showSnackBar("Connected",getApplicationContext());
                 isBtConnected = true;
             }
             hideProgress();
