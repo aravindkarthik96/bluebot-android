@@ -3,6 +3,8 @@ package com.bluebot.bluebotapp.bluetooth;
 import android.bluetooth.BluetoothSocket;
 import android.content.Context;
 
+import com.bluebot.bluebotapp.Utils;
+
 import java.io.IOException;
 
 /**
@@ -28,7 +30,7 @@ public class BluetoothCommons {
             }
             catch (IOException e)
             {
-
+                Utils.showSnackBar("something went wrong",context);
             }
         }
     }
