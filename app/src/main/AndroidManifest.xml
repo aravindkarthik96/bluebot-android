@@ -25,7 +25,7 @@
         <activity android:name=".homePage.HomeActivity" />
         <activity android:name=".pickBluetooth.PickBluetoothActivity" />
         <activity android:name=".remotecontrol.RemoteControl" />
-
+        <activity android:name=".directionbot.DirectionActivity"></activity>
     </application>
 
 </manifest>

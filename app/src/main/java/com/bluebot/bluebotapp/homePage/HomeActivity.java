@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.bluebot.bluebotapp.directionbot.DirectionActivity;
 import com.bluebot.bluebotapp.remotecontrol.RemoteControl;
 import com.bluebot.bluebotapp.commons.Utils;
 import com.bluebot.bluebotapp.commons.BluetoothCommons;
@@ -21,7 +22,7 @@ public class HomeActivity extends AppCompatActivity implements HomeActivityView 
     String address = null;
     private ProgressDialog progress;
     HomeActivityPresenter presenter;
-    Button disconnectButton , remoteControlButton;
+    Button disconnectButton , remoteControlButton , directionButton;
     BluetoothSocket bluetoothSocket;
 
     @Override
@@ -41,6 +42,7 @@ public class HomeActivity extends AppCompatActivity implements HomeActivityView 
         progress = ProgressDialog.show(HomeActivity.this, "Connecting to bluebot", "hold on");*/
         disconnectButton = (Button) findViewById(R.id.disconnectButton);
         remoteControlButton = (Button) findViewById(R.id.remoteControl);
+        directionButton = (Button) findViewById(R.id.directionControl);
 
         disconnectButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -54,6 +56,15 @@ public class HomeActivity extends AppCompatActivity implements HomeActivityView 
             @Override
             public void onClick(View view) {
                 Intent remoteControlIntent = new Intent(HomeActivity.this, RemoteControl.class);
+                remoteControlIntent.putExtra(BluetoothCommons.EXTRA_ADDRESS,address);
+                startActivity(remoteControlIntent);
+            }
+        });
+
+        directionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent remoteControlIntent = new Intent(HomeActivity.this, DirectionActivity.class);
                 remoteControlIntent.putExtra(BluetoothCommons.EXTRA_ADDRESS,address);
                 startActivity(remoteControlIntent);
             }
