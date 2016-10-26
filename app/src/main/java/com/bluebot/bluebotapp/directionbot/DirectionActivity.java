@@ -53,7 +53,7 @@ public class DirectionActivity extends AppCompatActivity implements DirectionAct
         sensorManager = (SensorManager)getSystemService(Context.SENSOR_SERVICE);
         compass = sensorManager.getDefaultSensor(Sensor.TYPE_ORIENTATION);
         if(compass != null){
-            sensorManager.registerListener(this, compass, SensorManager.SENSOR_DELAY_NORMAL);
+            sensorManager.registerListener(this, compass, SensorManager.SENSOR_DELAY_GAME,1);
         }
 
         lockButton.setOnClickListener(new View.OnClickListener() {
@@ -76,6 +76,7 @@ public class DirectionActivity extends AppCompatActivity implements DirectionAct
     public void onBluetoothConnectionFailed() {
         progress.dismiss();
         Utils.showSnackBar("something went wrong",getApplicationContext());
+        finish();
     }
 
     @Override
