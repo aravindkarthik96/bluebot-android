@@ -48,7 +48,6 @@ public class DirectionActivity extends AppCompatActivity implements DirectionAct
         lockButton = (Button) findViewById(R.id.lockButton);
         gobackButton = (Button) findViewById(R.id.goback);
         disconnect = (Button) findViewById(R.id.disconnect);
-        progress = ProgressDialog.show(DirectionActivity.this, "Connecting to bluebot", "hold on");
         degreeTextView = (TextView) findViewById(R.id.degreeTextView);
         sensorManager = (SensorManager)getSystemService(Context.SENSOR_SERVICE);
         compass = sensorManager.getDefaultSensor(Sensor.TYPE_ORIENTATION);
